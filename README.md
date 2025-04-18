@@ -4,7 +4,7 @@
 
 **Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth)
 
-**License:** [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE.md)
+**License:** [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://github.com/SevWren/QuickSynth/blob/main/LICENSE)
 
 ---
 
@@ -77,7 +77,7 @@ This means:
 
 In simple terms: **You can use, copy, and modify this work as long as you give attribution (credit me, Mike M / Sevwren, and link back to the repository) and you are not using it in a commercial product or for commercial gain.**
 
-Please see the [LICENSE.md](./LICENSE.md) file for the full legal text.
+Please see the [LICENSE.md](https://github.com/SevWren/QuickSynth/blob/main/LICENSE) file for the full legal text.
 
 ## Customization
 
