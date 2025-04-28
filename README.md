@@ -18,7 +18,7 @@ This allows for quick analysis, summarization, translation, or reformatting of w
 
 *   **Text Selection:** Automatically grabs the text you've highlighted on a webpage.
 *   **Fallback:** If no text is selected, it attempts to grab the entire body text of the page.
-*   **Editable Text Area:** Displays the captured text in an editable field within the popup, allowing you to modify or clean it up before processing. *(New in v2.05)*
+*   **Editable Text Area:** Displays the captured text in an editable field within the popup, allowing you to modify or clean it up before processing.
 *   **AI Selection UI:** Presents a clean, dark-themed popup (see screenshot below) to choose your target AI platform. "ChatGPT (Temp Chat)" is selected by default.
 *   **Prompt Formatting Options:** Offers distinct system prompts for different tasks:
     *   **Detailed Format:** Aims for a concise summary with specific formatting rules (simple sentences, bullets, bolding, italics).
@@ -32,6 +32,7 @@ This allows for quick analysis, summarization, translation, or reformatting of w
     *   Google Gemini
     *   Grok (X)
     *   ChatGPT (Temporary Chat)
+    *   **ChatGPT (Normal)** *(New in v2.07)*
     *   DeepAI Chat
     *   MS Copilot
     *   Perplexity
@@ -48,7 +49,7 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
-1.  **Copy the Bookmarklet Code:** Go to the main source file in this repository (e.g., `quicksynthV2.06.js` - **Note:** Use the latest version file) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
+1.  **Copy the Bookmarklet Code:** Go to the main source file in this repository (e.g., `quicksynthV2.07.js` - **Note:** Use the latest version file) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.
@@ -66,10 +67,10 @@ Bookmarklets are installed differently than browser extensions.
 4.  **UI Appears:** A popup menu will appear overlaying the page.
 
     ![QuickSynth AI Selector Popup](Assets/popup.png)
-    *(Note: Screenshot shows general layout; UI text might slightly differ based on updates)*
+    *(Note: Screenshot shows general layout; UI text/options might slightly differ based on updates)*
 
 5.  **Edit Text (Optional):** The captured text appears in the left-most pane. You can now click into this area and edit, delete, or add text as needed before proceeding.
-6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service if desired. The selected AI will be highlighted.
+6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service (like "ChatGPT (Normal)" or others) if desired. The selected AI will be highlighted.
 7.  **Choose Format:** Click on the desired prompt format button ("Detailed Format", "Simple Summary Format", or "Translate to English").
 8.  **Action:**
     *   The **edited text** from the text area, combined with the chosen prompt and the source page's URL context, will be copied to your clipboard.
@@ -82,7 +83,7 @@ Bookmarklets are installed differently than browser extensions.
 
 You can modify the bookmarklet code directly (before creating the bookmark) to:
 
-*   **Change AI Services:** Edit the `e` array (variable holding the list of AI objects) to add, remove, or modify the names and URLs.
+*   **Change AI Services:** Edit the `e` array (variable holding the list of AI objects) to add, remove, or modify the names and URLs. This is how "ChatGPT (Normal)" was added.
 *   **Modify Prompts:** Edit the `l` (Detailed Format), `n` (Simple Summary), or `z` (Translate to English) variables to change the system instructions sent to the AI. Remember that special characters in prompts need to be URL-encoded (e.g., `%27` for an apostrophe, `%0A` for a newline if not using template literals).
 *   **Adjust Styling:** Modify the `s` object (variable holding style definitions like colors, padding, font sizes) to change the appearance of the popup. This now includes styling for the `<textarea>` element as well.
 
@@ -108,15 +109,18 @@ This section lists potential improvements and features for future versions:
 
 ## Changelog
 
-### v2.06 - 2025-04-20
-*   Minor internal code refinements and version bump. (No major user-facing feature changes compared to v2.05).
+### v2.07 - 2025-04-28
+*   **Feature:** Added "ChatGPT (Normal)" option (`https://chatgpt.com/`) to the AI selection list, appearing below "ChatGPT (Temp Chat)". Updated the `e` array in the script.
 
-### v2.05 - 2024-05-21
+### v2.05 - 2024-04-21
 *   **Feature:** Made the "Selected Text" area editable within the popup. Users can now modify or trim the captured text directly in the popup before sending it to the AI.
 *   **Change:** Updated the manual copy button and its confirmation alert to refer to "Edited Text".
 *   **Change:** Clarified the character count label as "chars (original)".
 *   **Internal:** Replaced the text display `<div>` with a styled `<textarea>` and updated logic to copy the edited text.
 *   **Fix:** Corrected encoding for backticks around the source URL in the copied prompt context.
+
+### v2.06 - 2025-04-20
+*   Minor internal code refinements and version bump. (No major user-facing feature changes compared to v2.05).
 
 *(Previous versions omitted for brevity)*
 
@@ -142,4 +146,4 @@ Please see the [LICENSE](https://github.com/SevWren/QuickSynth/blob/main/LICENSE
 
 ---
 
-*(README updated to reflect changes up to quicksynthV2.06.js)*
+*(README updated to reflect changes up to quicksynthV2.07.js)*
