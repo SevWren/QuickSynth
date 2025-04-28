@@ -18,20 +18,23 @@ This allows for quick analysis, summarization, translation, or reformatting of w
 
 *   **Text Selection:** Automatically grabs the text you've highlighted on a webpage.
 *   **Fallback:** If no text is selected, it attempts to grab the entire body text of the page.
+*   **Editable Text Area:** Displays the captured text in an editable field within the popup, allowing you to modify or clean it up before processing. *Rare*, but on **occasion** sites will contain enough hidden text that can affect a LLM's response when summarizing.  *(New in v2.05)*
+*   **AI Selection UI:** Presents a clean, dark-themed gui popup (see screenshot). "ChatGPT (Temp Chat)" is selected by default.
 *   **Editable Text Area:** Displays the captured text in an editable field within the popup, allowing you to modify or clean it up before processing.
 *   **AI Selection UI:** Presents a clean, dark-themed popup (see screenshot below) to choose your target AI platform. "ChatGPT (Temp Chat)" is selected by default.
 *   **Prompt Formatting Options:** Offers distinct system prompts for different tasks:
     *   **Detailed Format:** Aims for a concise summary with specific formatting rules (simple sentences, bullets, bolding, italics).
     *   **Simple Summary Format:** Creates a short summary (5 bullets or less + 1 paragraph).
     *   **Translate to English:** Instructs the AI to translate the provided text into English.
-*   **Source URL Context:** Automatically includes the URL of the source webpage in the text copied to the clipboard, providing context to the AI.
-*   **Clipboard Integration:** Copies the (potentially edited) selected text combined with the chosen system prompt and URL context directly to your clipboard.
+*   **Source URL Context:** Automatically extracts current URL of the source webpage and inserts it into the final contents copied to the clipboard, providing context to the AI.
+*   **Clipboard Integration:** Copies the selected text/ all text (including any manual edits) combined with the chosen system prompt and URL context directly to your clipboard.
 *   **Automatic Redirect:** Opens the selected AI service's website in a new tab.
 *   **Streamlined Workflow:** No extra confirmation popups after selecting a prompt format; the process is immediate.
-*   **Configurable:** The list of AI services and prompts can be easily modified within the bookmarklet code. Default included AIs:
+*   **Configurable:** The list of AI services and prompts can modified within the bookmarklet code. Default included AIs:
     *   Google Gemini
     *   Grok (X)
     *   ChatGPT (Temporary Chat)
+    *   ChatGPT (Default Chatgpt Experience)    
     *   **ChatGPT (Normal)** *(New in v2.07)*
     *   DeepAI Chat
     *   MS Copilot
