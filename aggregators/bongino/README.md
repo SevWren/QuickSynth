@@ -41,8 +41,11 @@ The extracted data includes a system prompt for summarizing articles. The prompt
 4. Handle inaccessible URLs gracefully by providing an error note.
 
 ## Notes
-- Ensure you are on running on https://bonginoreport.com
+- Ensure you are on running the bookmarklet from https://bonginoreport.com
 - The scripts are designed specifically for the Bongino Report website
+- The text copied to clipboard works best with the Grok LLM https://grok.com/ 
+![alt text](image.png)
+- DeeperSearch does not need to be enabled.
 
 ## Disclaimer
 These scripts are provided as-is and are intended for personal use. The authors are not affiliated with the Bongino Report website. Use them responsibly and at your own risk.
