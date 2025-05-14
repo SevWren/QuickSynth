@@ -1,3 +1,22 @@
+<!--
+This HTML file serves as a reference for the Bongino Report article extractor bookmarklet.
+Key elements targeted by the bookmarklet:
+- section.all-stories - Main container for article listings
+- div.col-12.col-sm-6.col-lg-4.all-stories__box - Individual category boxes
+- h4.title.border-bottom - Category titles
+- a.all-stories__link-box - Article links containing titles and URLs
+
+Page structure:
+- Uses Bootstrap grid system for layout
+- Custom CSS from bonginoreport.com/css/custom.css
+- Semantic HTML5 elements (header, section, etc.)
+- Responsive design with multiple breakpoints
+
+This template helps ensure the bookmarklet's selectors and DOM traversal 
+remain compatible with the site's structure and styling.
+-->
+
+
 <html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
 
 <meta charset="utf-8">
@@ -19,9 +38,6 @@
 </style></head>
    <body data-aaad="true" data-aa-adunit="/22181265/bonginoreport_sticky_footer" class="d-flex flex-column vh-100 vsc-initialized">
     
-
-
-     
      
       <div id="container" class="tk-museo-sans">
     
