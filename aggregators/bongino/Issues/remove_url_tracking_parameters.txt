@@ -1,0 +1,18 @@
+TODO:  Edit Bookmarklet to dynamically detect and remove tracking parameters from any urls detected
+
+Article Title - Homes for Sale in Washington Surge 25 Percent Amid Federal Layoffs
+Article Url - https://www.theepochtimes.com/business/homes-for-sale-in-washington-surge-25-percent-amid-federal-layoffs-5854416?utm_source=partner&utm_campaign=BonginoReport&src_src=partner&src_cmp=BonginoReport
+
+Article Title - Kari Lake Strikes Deal for OAN to Provide News Content to Voice of America
+Article Url - https://www.theepochtimes.com/business/kari-lake-strikes-deal-for-oan-to-provide-news-content-to-voice-of-america-5853997?utm_source=partner&utm_campaign=BonginoReport&src_src=partner&src_cmp=BonginoReport
+
+Article Title - 9 Neck Stretches That May Help Alleviate Insomnia, Dizziness, and High Blood Pressure
+Article Url - https://www.theepochtimes.com/health/9-neck-stretches-that-may-help-alleviate-insomnia-dizziness-and-high-blood-pressure-5848684?utm_source=partner&utm_campaign=BonginoReport
+
+Article Url - https://www.theepochtimes.com/health/magnesium-could-relieve-fibromyalgia-and-migraines-and-how-it-works-5836828?utm_source=partner&utm_campaign=BonginoReport
+
+Article Title - Medicaid Reform Proposals in Congress–What to Know
+Article Url - https://www.theepochtimes.com/article/medicaid-reform-proposals-in-congress-what-to-know-5852593?utm_source=partner&utm_campaign=BonginoReport
+
+Article Title - How Air Pollution Affects Early Brain Development
+Article Url - https://www.theepochtimes.com/health/how-air-pollution-affects-early-brain-development-5839792?utm_source=partner&utm_campaign=BonginoReport
