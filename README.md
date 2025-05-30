@@ -57,6 +57,9 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
+![Bookmarklet animated](Assets/bookmarklet_animated.webp)
+
+
 1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynthV2.07.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynthV2.07.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
@@ -74,8 +77,17 @@ Bookmarklets are installed differently than browser extensions.
 3.  **Click the Bookmarklet:** Click the `QuickSynth` bookmark you created in your bookmarks bar.
 4.  **UI Appears:** A popup menu will appear overlaying the page.
 
-    ![QuickSynth AI Selector Popup](Assets/popup.png)
+    
+    <br>
+
+    <img align="left" src="Assets/popup.png" alt="QuickSynth AI Selector Popup" />
+    
+    <br>
+
     *(Note: Screenshot shows general layout; UI text/options might slightly differ based on updates)*
+    
+    <br>
+
 
 5.  **Edit Text (Optional):** The captured text appears in the left-most pane. You can now click into this area and edit, delete, or add text as needed before proceeding.
 6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service (like "ChatGPT (Normal)" or others) if desired. The selected AI will be highlighted.
