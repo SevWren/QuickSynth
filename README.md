@@ -161,7 +161,7 @@ This means:
 *   **Attribution (BY):** You must give appropriate credit if you share or adapt this work.
 *   **NonCommercial (NC):** You may **not** use this work for commercial purposes.
 
-In simple terms: **You can use, copy, and modify this work as long as you give attribution (credit me, Mike M / SevWren, and link back to the repository) and you are not using it in a commercial product or for commercial gain.**
+In simple terms: **You can use, copy, and modify this work as long as you give attribution and you are not using it in a commercial product or for commercial gain.**
 
 Please see the [LICENSE](https://github.com/SevWren/QuickSynth/blob/main/LICENSE) file for the full legal text.
 
