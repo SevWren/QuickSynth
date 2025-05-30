@@ -10,7 +10,11 @@
 
 ## Overview
 
-QuickSynth is a browser bookmarklet designed to streamline the process of sending selected text from any webpage (or the entire page content if no text is selected) to various AI chat platforms. It presents the captured text in an editable area, bundles the (potentially edited) text with one of several pre-defined prompts, includes the source URL for context, and copies the combined content to your clipboard before opening the chosen AI service's website in a new tab.
+QuickSynth is a browser bookmarklet designed to streamline the process of sending selected text
+from any webpage (or the entire page content if no text is selected) to various AI chat
+platforms. It presents the captured text in an editable area, bundles the (potentially edited)
+text with one of several pre-defined prompts, includes the source URL for context, and copies the
+combined content to your clipboard before opening the chosen AI service's website in a new tab.
 
 This allows for quick analysis, summarization, translation, or reformatting of web content using your preferred AI tool, with consistent instructions, source context, and the ability to refine the text beforehand.
 
@@ -26,21 +30,22 @@ This allows for quick analysis, summarization, translation, or reformatting of w
     *   **Detailed Format:** Aims for a concise summary with specific formatting rules (simple sentences, bullets, bolding, italics).
     *   **Simple Summary Format:** Creates a short summary (5 bullets or less + 1 paragraph).
     *   **Translate to English:** Instructs the AI to translate the provided text into English.
-*   **Source URL Context:** Automatically extracts current URL of the source webpage and inserts it into the final contents copied to the clipboard, providing context to the AI.
+*   **Source URL Context:** Automatically extracts current URL of the source webpage and inserts it into the final contents copied to the clipboard, providing context to the AI. When combined with a LLM & Web Search, this provides additional context to the AI.
 *   **Clipboard Integration:** Copies the selected text/ all text (including any manual edits) combined with the chosen system prompt and URL context directly to your clipboard.
-*   **Automatic Redirect:** Opens the selected AI service's website in a new tab.
+*   **Automatic Redirect:** Opens the selected AI service's website in a new tab to paste the contents of your clipboard.
 *   **Streamlined Workflow:** No extra confirmation popups after selecting a prompt format; the process is immediate.
 *   **Configurable:** The list of AI services and prompts can modified within the bookmarklet code. Default included AIs:
-    *   Google Gemini
-    *   Grok (X)
-    *   ChatGPT (Temporary Chat)
-    *   ChatGPT (Default Chatgpt Experience)    
-    *   **ChatGPT (Normal)** *(New in v2.07)*
-    *   DeepAI Chat
-    *   MS Copilot
-    *   Perplexity
+    *   Google Gemini (gemini.google.com/app)
+    *   Grok (X) (grok.com)
+    *   ChatGPT (Temporary Chat) (chatgpt.com/?temporary-chat=true) **This is the AI option by default**
+    *   ChatGPT (Default Chatgpt Experience) (chatgpt.com)
+    *   DeepAI Chat (deepai.org/chat)
+    *   MS Copilot (copilot.microsoft.com)
+    *   Perplexity (perplexity.ai)
 *   **Error Handling:** Includes basic checks (e.g., prevents multiple popups) and error reporting via console/alerts.
-*   **Improved Compatibility & Robustness:** Uses standard DOM manipulation (avoids `innerHTML`) to ensure it works correctly on websites enforcing strict Content Security Policies (Trusted Types) and avoids common variable conflicts on complex sites.
+*   **Improved Compatibility & Robustness:**
+    Uses standard DOM manipulation to ensure it works correctly on websites enforcing strict Content Security Policies (Trusted Types).
+    Also avoids common variable conflicts on complex sites.
 
 ## Installation
 
@@ -52,7 +57,7 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
-1.  **Copy the Bookmarklet Code:** Go to the main source file in this repository (e.g., `quicksynthV2.07.js` - **Note:** Use the latest version file) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
+1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynthV2.07.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynthV2.07.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.

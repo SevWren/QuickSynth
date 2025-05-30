@@ -651,10 +651,14 @@ javascript: void (function () {
                     console.error("Manual copy failed:", error);
                 });
         };
+        // Add the manual copy button to the manual copy container
         manualCopyContainer.appendChild(manualCopyButton);
+        // Add the manual copy container (with the manual copy button) to the actions container
         actionsContainer.appendChild(manualCopyContainer);
 
+        // Add the actions container (with all the AI buttons and the manual copy button) to the actions panel
         actionsPanel.appendChild(actionsContainer);
+        // Add the actions panel (with all the AI buttons and the manual copy button) to the popup
         popup.appendChild(actionsPanel);
 
         // Add the fully constructed popup to the page body
