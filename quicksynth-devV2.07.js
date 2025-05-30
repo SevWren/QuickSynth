@@ -24,7 +24,7 @@ javascript: void (function () {
          */
         const aiOptions = [
             { name: "Google Gemini", url: "https://gemini.google.com/app" },
-            { name: "Grok (X)", url: "https://x.com/i/grok" },
+            { name: "Grok (X)", url: "https://www.grok.com" },
             { name: "ChatGPT (Temp Chat)", url: "https://chatgpt.com/?temporary-chat=true" },
             { name: "ChatGPT (Normal)", url: "https://chatgpt.com/" },
             { name: "DeepAI Chat", url: "https://deepai.org/chat" },
