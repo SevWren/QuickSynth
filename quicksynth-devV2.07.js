@@ -2,7 +2,7 @@ javascript: void (function () {
     /**
      * @file Bookmarklet for selecting an AI assistant and sending selected page text with a chosen prompt.
      * @version 1.0.0
-     * @author Your Name/Alias (if applicable)
+     * @author SevWren
      */
 
     try {
