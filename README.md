@@ -57,7 +57,7 @@ Bookmarklets are installed differently than browser extensions.
 
 
 
-1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynthV2.07.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynthV2.07.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
+1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynth_bookmarklet_V2.08.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynth_bookmarklet_V2.08.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.
@@ -108,7 +108,7 @@ This section lists potential improvements and features for future versions:
 *   **UI Themes:** Offer different color themes (e.g., light mode).
 *   **Persistence:** Remember the last used AI and/or prompt format (potentially using `localStorage`, though this might be tricky/undesirable for a simple bookmarklet).
 *   **Advanced Text Extraction:** Improve handling of complex pages, iframes, or specific content types.
-*   ~~**Dynamic Char Count:** Update the character count label dynamically as the user edits the text area.~~
+*   **Dynamic Char Count:** The character count now updates in real-time as you edit the text in the text area.
 *   ~~**Direct API Integration (Advanced):** Explore possibilities for directly interacting with AI APIs if available (this would likely require a different approach, possibly a browser extension instead of a bookmarklet, due to security and complexity).~~
 
 ---
@@ -119,6 +119,11 @@ This section lists potential improvements and features for future versions:
 Please report any issues you find to the [Issues](https://github.com/QuickSynth/QuickSynth/issues) page.
 
 ## Changelog
+
+### v2.08 - 2025-05-31
+*   **Fix:** Fixed real-time character count to properly update as you type in the text area
+*   **UI/UX:** Improved the visual feedback when hovering over interactive elements
+*   **Code Quality:** Enhanced JSDoc comments and code organization
 
 ### v2.07 - 2025-04-28
 *   **Feature:** Added "ChatGPT (Normal)" option (`https://chatgpt.com/`) to the AI selection list, appearing below "ChatGPT (Temp Chat)". Updated the `e` array in the script.
@@ -137,6 +142,12 @@ Please report any issues you find to the [Issues](https://github.com/QuickSynth/
 *(Previous versions omitted for brevity)*
 
 ---
+
+## Feedback & Bug Reports
+
+Your feedback is valuable in improving QuickSynth! You can help by:
+- Reporting any bugs you encounter via issues or the google form below.
+📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
 
 ## License
 
