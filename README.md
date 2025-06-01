@@ -116,7 +116,7 @@ This section lists potential improvements and features for future versions:
 
 - **Platform Compatibility**: This bookmarklet is currently only confirmed to work on Windows 10. Mobile platforms (iOS/Android) prohibit automated clipboard access, which is required for this tool to function.
 
-Please report any issues you find to the [Issues](https://github.com/QuickSynth/QuickSynth/issues) page.
+Please report any issues you find to the [Issues](https://github.com/QuickSynth/QuickSynth/issues) page or 📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
 
 ## Changelog
 
@@ -146,7 +146,7 @@ Please report any issues you find to the [Issues](https://github.com/QuickSynth/
 ## Feedback & Bug Reports
 
 Your feedback is valuable in improving QuickSynth! You can help by:
-- Reporting any bugs you encounter via issues or the google form below.
+- Reporting any bugs you encounter via issues or the google form below. <br>
 📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
 
 ## License
