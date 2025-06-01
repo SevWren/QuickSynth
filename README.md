@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 # QuickSynth Bookmarklet
-
-**Author:** Mike M 'SevWren' (GitHub: [SevWren](https://github.com/SevWren))
-
-**Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth)
-=======
-![QuickSynth](https://github.com/user-attachments/assets/a656aed8-6afc-4063-abe3-c57bbb015dc9)
->>>>>>> 8fa8fa191ec15aa719c4368bc8bf31c01644cb3a
 
 **Author:** [SevWren](https://github.com/SevWren) <br>
 **Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth) <br>
@@ -157,7 +149,7 @@ This means:
 *   **Attribution (BY):** You must give appropriate credit if you share or adapt this work.
 *   **NonCommercial (NC):** You may **not** use this work for commercial purposes.
 
-In simple terms: **You can use, copy, and modify this work as long as you give attribution and you are not using it in a commercial product or for commercial gain.**
+In simple terms: **You can use, copy, and modify this work as long as you give attribution and you are not using it in a commercial product or for comercial gain.**
 
 Please see the [LICENSE](https://github.com/SevWren/QuickSynth/blob/main/LICENSE) file for the full legal text.
 
