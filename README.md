@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 # QuickSynth Bookmarklet
 
 **Author:** Mike M 'SevWren' (GitHub: [SevWren](https://github.com/SevWren))
 
 **Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth)
+=======
+![QuickSynth](https://github.com/user-attachments/assets/a656aed8-6afc-4063-abe3-c57bbb015dc9)
+>>>>>>> 8fa8fa191ec15aa719c4368bc8bf31c01644cb3a
 
+**Author:** [SevWren](https://github.com/SevWren) <br>
+**Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth) <br>
 **License:** [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://github.com/SevWren/QuickSynth/blob/main/LICENSE)
 
 ---
@@ -55,7 +61,8 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
-![Bookmarklet animated](Assets/bookmarklet_animated.webp)
+<br> ![Bookmarklet animated](Assets/bookmarklet_animated.webp) <br>
+
 
 
 1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynthV2.07.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynthV2.07.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
@@ -74,19 +81,8 @@ Bookmarklets are installed differently than browser extensions.
 2.  **Select Text (Optional):** Highlight the specific portion of text you are interested in. If you skip this step, QuickSynth will try to use the entire page content.
 3.  **Click the Bookmarklet:** Click the `QuickSynth` bookmark you created in your bookmarks bar.
 4.  **UI Appears:** A popup menu will appear overlaying the page.
-
-    
-    <br>
-
-    <img align="left" src="Assets/popup.png" alt="QuickSynth AI Selector Popup" />
-    
-    <br>
-
+<br> ![PopUp](Assets/popup.png) <br>
     *(Note: Screenshot shows general layout; UI text/options might slightly differ based on updates)*
-    
-    <br>
-
-
 5.  **Edit Text (Optional):** The captured text appears in the left-most pane. You can now click into this area and edit, delete, or add text as needed before proceeding.
 6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service (like "ChatGPT (Normal)" or others) if desired. The selected AI will be highlighted.
 7.  **Choose Format:** Click on the desired prompt format button ("Detailed Format", "Simple Summary Format", or "Translate to English").
