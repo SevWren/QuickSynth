@@ -615,18 +615,20 @@ javascript: void (function () {
             marginTop: styles.padding
         });
 
+        // Create a manual copy button element
         const manualCopyButton = document.createElement("button");
+        // Apply consistent styling to match the application's dark theme
         applyStyles(manualCopyButton, {
-            width: "100%",
-            backgroundColor: styles.colors.bgLighter,
-            color: styles.colors.text,
-            border: "none",
-            padding: `${styles.paddingSmall} ${styles.padding}`,
-            borderRadius: "0.5rem",
-            fontSize: styles.fontSizeSm,
-            cursor: "pointer",
-            textAlign: "center",
-            transition: "background-color 0.2s ease"
+            width: "100%",                             // Full width of container
+            backgroundColor: styles.colors.bgLighter,  // Slightly lighter than background for visibility
+            color: styles.colors.text,                 // Text color from theme
+            border: "none",                            // No border for cleaner look
+            padding: `${styles.paddingSmall} ${styles.padding}`,  // Vertical and horizontal padding
+            borderRadius: "0.5rem",                   // Rounded corners
+            fontSize: styles.fontSizeSm,               // Small font size for button text
+            cursor: "pointer",                        // Pointer cursor on hover
+            textAlign: "center",                      // Center button text
+            transition: "background-color 0.2s ease"  // Smooth color transition on hover
         });
         manualCopyButton.textContent = "Copy Detailed Prompt + Edited Text Manually";
         manualCopyButton.onmouseover = () => manualCopyButton.style.backgroundColor = styles.colors.hoverBg;
