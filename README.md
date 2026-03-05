@@ -53,11 +53,11 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
-<br> ![Bookmarklet animated](Assets/bookmarklet_animated.webp) <br>
+<br> ![Bookmarklet animated](assets/bookmarklet_animated.webp) <br>
 
 
 
-1.  **Copy the Bookmarklet Code:** Go to the latest source file in this repository ([quicksynth_bookmarklet_V2.08.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/quicksynth_bookmarklet_V2.08.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
+1.  **Copy the Bookmarklet Code:** Go to the bookmarklet output file in this repository ([dist/quicksynth.bookmarklet.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/dist/quicksynth.bookmarklet.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.
@@ -73,7 +73,7 @@ Bookmarklets are installed differently than browser extensions.
 2.  **Select Text (Optional):** Highlight the specific portion of text you are interested in. If you skip this step, QuickSynth will try to use the entire page content.
 3.  **Click the Bookmarklet:** Click the `QuickSynth` bookmark you created in your bookmarks bar.
 4.  **UI Appears:** A popup menu will appear overlaying the page.
-<br> ![PopUp](Assets/popup.png) <br>
+<br> ![PopUp](assets/popup.png) <br>
     *(Note: Screenshot shows general layout; UI text/options might slightly differ based on updates)*
 5.  **Edit Text (Optional):** The captured text appears in the left-most pane. You can now click into this area and edit, delete, or add text as needed before proceeding.
 6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service (like "ChatGPT (Normal)" or others) if desired. The selected AI will be highlighted.
@@ -119,6 +119,11 @@ This section lists potential improvements and features for future versions:
 Please report any issues you find to the [Issues](https://github.com/QuickSynth/QuickSynth/issues) page or 📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
 
 ## Changelog
+Current version: `0.90` (source of truth: root `VERSION` file).
+
+### v0.90 - 2026-03-05
+*   **Repo:** Standardized repository layout to `src/`, `dist/`, `assets/`, and `docs/`.
+*   **Versioning:** Adopted root `VERSION` as the single source of truth.
 
 ### v2.08 - 2025-05-31
 *   **Fix:** Fixed real-time character count to properly update as you type in the text area

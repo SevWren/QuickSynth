@@ -1,11 +1,26 @@
 javascript: void (function () {
     /**
      * @file Bookmarklet for selecting an AI assistant and sending selected page text with a chosen prompt.
-     * @version 1.0.0
+     * @version 0.90
      * @author SevWren
+     * @description A browser bookmarklet that allows users to select text on any webpage, choose an AI assistant,
+     * and send the text with a predefined prompt for analysis, summarization, or translation.
+     * Features include real-time character counting, multiple AI service options, and customizable prompts.
+     * @license CC BY-NC 4.0
      */
 
+
+
+    /**
+     * Main execution block wrapped in try-catch for error handling.
+     * @function
+     * @throws {Error} If there's an error during execution, it will be caught and displayed to the user.
+     */
+
+
     try {
+        
+        
         /**
          * Unique ID for the main popup element.
          * @const {string}
@@ -30,10 +45,13 @@ javascript: void (function () {
             { name: "DeepAI Chat", url: "https://deepai.org/chat" },
             { name: "MS Copilot", url: "https://copilot.microsoft.com/" },
             { name: "Perplexity", url: "https://www.perplexity.ai/" },
+            { name: "DuckDuckGo", url: "http://duck.ai/" },
         ];
 
         /**
          * Predefined detailed prompt for text analysis and summarization.
+         * Note: Special characters (like ') are URL-encoded (as %27) to ensure
+         * proper transmission in URLs and prevent syntax errors.
          * @const {string}
          */
         const detailedPrompt =
@@ -56,30 +74,11 @@ javascript: void (function () {
          * Predefined prompt for translating text to English.
          * @const {string}
          */
-
         const translatePrompt = "Translate the Provided text from the source language to the target language \"English\":";
 
         /**
          * Object containing styling definitions for the UI elements.
          * @const {object}
-         * @property {object} colors - Color palette.
-         * @property {string} colors.bgDark - Dark background color.
-         * @property {string} colors.bgDarker - Even darker background color.
-         * @property {string} colors.bgLighter - Lighter background color.
-         * @property {string} colors.border - Border color.
-         * @property {string} colors.text - Primary text color.
-         * @property {string} colors.textDim - Dimmed text color.
-         * @property {string} colors.accent - Accent color.
-         * @property {string} colors.selectedBg - Background color for selected items.
-         * @property {string} colors.selectedBorder - Border color for selected items.
-         * @property {string} colors.hoverBg - Background color for hovered items.
-         * @property {string} padding - Standard padding value.
-         * @property {string} paddingSmall - Smaller padding value.
-         * @property {string} borderRadius - Standard border radius.
-         * @property {string} fontSizeLg - Large font size.
-         * @property {string} fontSizeBase - Base font size.
-         * @property {string} fontSizeSm - Small font size.
-         * @property {string} fontSizeXs - Extra small font size.
          */
         const styles = {
             colors: {
@@ -103,75 +102,47 @@ javascript: void (function () {
             fontSizeXs: "0.75rem",
         };
 
-        // Prevent multiple popups
+        // Guard against duplicate UI injection when users click the bookmarklet repeatedly.
         if (document.getElementById(popupId)) {
             console.log("AI Selector Popup already exists.");
             return;
         }
 
-        /**
-         * The text selected by the user or the entire body text if no selection.
-         * @type {string}
-         */
         let selectedText = "";
         const selection = window.getSelection();
+        // Prefer explicit user selection. Fallback to full body text for one-click summarization.
         if (selection && selection.toString().trim().length > 0) {
             selectedText = selection.toString().trim();
             console.log("Using selected text.");
         } else {
-            selection.removeAllRanges();
+            if (selection) selection.removeAllRanges();
             const range = document.createRange();
             range.selectNodeContents(document.body);
-            selection.addRange(range);
-            selectedText = selection.toString().trim();
-            selection.removeAllRanges();
+            if (selection) selection.addRange(range);
+            selectedText = selection ? selection.toString().trim() : "";
+            if (selection) selection.removeAllRanges();
             console.log("Using body text.");
         }
 
         if (!selectedText) {
-            alert("Could not find text to process. Select text on the page or ensure the page body has text content."); //typically happens when text is rendered in an undetectable way
+            alert("Could not find text to process. Select text on the page or ensure the page body has text content.");
             return;
         }
 
-        /**
-         * The currently selected AI object from `aiOptions`.
-         * @type {null|{name: string, url: string}}
-         */
+        // Shared UI state used across selection/action handlers.
         let selectedAi = null;
-        /**
-         * The DOM element representing the currently selected AI in the list.
-         * @type {null|HTMLElement}
-         */
         let selectedAiElement = null;
-        /**
-         * The DOM element for the "Detailed Format" action button.
-         * @type {null|HTMLElement}
-         */
         let detailedButton = null;
-        /**
-         * The DOM element for the "Simple Summary Format" action button.
-         * @type {null|HTMLElement}
-         */
         let simpleButton = null;
-        /**
-         * The DOM element for the "Translate to English" action button.
-         * @type {null|HTMLElement}
-         */
         let translateButton = null;
-        /**
-         * The DOM element used to display the name of the currently selected AI.
-         * @type {null|HTMLElement}
-         */
         let selectedAiDisplay = null;
-        /**
-         * The textarea DOM element where the selected text is displayed and can be edited.
-         * @type {null|HTMLTextAreaElement}
-         */
         let textArea = null;
-
+        let textPanelHeaderCharCount = null;
 
         /**
-         * Closes the popup and overlay by removing them from the DOM.
+         * Closes the popup and removes the overlay from the DOM.
+         * @function closePopup
+         * @returns {void}
          */
         function closePopup() {
             const popupEl = document.getElementById(popupId);
@@ -182,10 +153,11 @@ javascript: void (function () {
         }
 
         /**
-         * Applies a set of CSS styles to a given DOM element.
-         * @param {HTMLElement} element - The DOM element to style.
-         * @param {Object<string, string>} styleProps - An object where keys are CSS property names (camelCase)
-         *                                            and values are their corresponding string values.
+         * Applies multiple CSS styles to a DOM element.
+         * @function applyStyles
+         * @param {HTMLElement} element - The DOM element to apply styles to.
+         * @param {Object.<string, string>} styleProps - An object where keys are CSS properties and values are their corresponding values.
+         * @returns {void}
          */
         function applyStyles(element, styleProps) {
             for (const key in styleProps) {
@@ -194,21 +166,27 @@ javascript: void (function () {
         }
 
         /**
-         * Handles the action of sending the text to the selected AI.
-         * Constructs the final payload (prompt + text + context), copies it to the clipboard,
-         * opens the selected AI's URL in a new tab, and closes the popup.
-         * @param {string} prompt - The base prompt string for the action.
-         * @param {string} actionName - A descriptive name for the action (e.g., "Detailed Format") for logging.
+         * Handles the action when a prompt format is selected.
+         * Copies the formatted text to the clipboard and opens the selected AI service.
+         * @function handleAction
+         * @param {string} prompt - The prompt template to use for the AI.
+         * @param {string} actionName - The name of the action being performed (for logging).
+         * @returns {void}
          */
         function handleAction(prompt, actionName) {
             if (!selectedAi) {
                 alert("Please select an AI assistant first.");
                 return;
             }
+            if (!textArea) {
+                console.error("Textarea element not found.");
+                alert("Error: Text area not initialized.");
+                return;
+            }
 
             const sourceUrl = window.location.href;
             const contextPrefix = `The text was taken from the url \`${sourceUrl}\`\n Here is the text to analyze:\n\n`;
-            const currentText = textArea.value; // Get current text from textarea
+            const currentText = textArea.value;
             const finalPayload = `${prompt}\n\n${contextPrefix}${currentText}`;
 
             navigator.clipboard
@@ -224,22 +202,20 @@ javascript: void (function () {
                 });
         }
 
-        // --- UI Creation ---
-
-        // Create overlay
+        // Overlay catches outside-clicks to close the popup.
         const overlay = document.createElement("div");
         overlay.id = overlayId;
         applyStyles(overlay, {
             position: "fixed",
             inset: "0",
             backgroundColor: "rgba(0, 0, 0, 0.6)",
-            zIndex: "2147483645", // High z-index to be on top
+            zIndex: "2147483645",
             backdropFilter: "blur(3px)",
         });
-        overlay.onclick = closePopup; // Close popup when overlay is clicked
+        overlay.onclick = closePopup;
         document.body.appendChild(overlay);
 
-        // Create popup container
+        // Main 3-column container: text, AI selection, processing actions.
         const popup = document.createElement("div");
         popup.id = popupId;
         applyStyles(popup, {
@@ -254,16 +230,15 @@ javascript: void (function () {
             color: styles.colors.text,
             borderRadius: styles.borderRadius,
             boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
-            zIndex: "2147483646", // Higher z-index than overlay
+            zIndex: "2147483646",
             display: "flex",
             flexDirection: "row",
             overflow: "hidden",
             fontFamily: "Arial, sans-serif",
         });
 
-        // Create Close button for the popup
         const closeButton = document.createElement("button");
-        closeButton.textContent = "\u00D7"; // "×" character
+        closeButton.textContent = "\u00D7";
         applyStyles(closeButton, {
             position: "absolute",
             top: "10px",
@@ -281,10 +256,9 @@ javascript: void (function () {
         closeButton.onclick = closePopup;
         popup.appendChild(closeButton);
 
-        // --- Left Panel: Text Area ---
         const textPanel = document.createElement("div");
         applyStyles(textPanel, {
-            flex: "1", // Takes 1/3 of the space (with other flex:1 panels)
+            flex: "1",
             display: "flex",
             flexDirection: "column",
             borderRight: `1px solid ${styles.colors.border}`,
@@ -311,7 +285,7 @@ javascript: void (function () {
         textPanelHeaderTitle.textContent = "Selected Text";
         textPanelHeader.appendChild(textPanelHeaderTitle);
 
-        const textPanelHeaderCharCount = document.createElement("span");
+        textPanelHeaderCharCount = document.createElement("span");
         applyStyles(textPanelHeaderCharCount, {
             fontSize: styles.fontSizeXs,
             backgroundColor: styles.colors.bgLighter,
@@ -322,29 +296,36 @@ javascript: void (function () {
         textPanelHeader.appendChild(textPanelHeaderCharCount);
         textPanel.appendChild(textPanelHeader);
 
-        textArea = document.createElement("textarea"); // Assign to the global 'textArea'
+        textArea = document.createElement("textarea");
         applyStyles(textArea, {
             flexGrow: "1",
             overflowY: "auto",
             padding: styles.padding,
             whiteSpace: "pre-wrap",
             wordWrap: "break-word",
-            color: styles.colors.textDim, // Dim color for editable text, can be changed
+            color: styles.colors.textDim,
             lineHeight: "1.6",
             backgroundColor: styles.colors.bgDark,
             border: "none",
             outline: "none",
-            resize: "vertical", // Allow vertical resize
+            resize: "vertical",
             width: "100%",
             boxSizing: "border-box",
             fontFamily: "inherit",
             fontSize: styles.fontSizeSm
         });
-        textArea.value = selectedText; // Set initial text
+        textArea.value = selectedText;
+
+        // Keep character count synced with edited text.
+        textArea.addEventListener('input', function() {
+            if (textPanelHeaderCharCount) {
+                textPanelHeaderCharCount.textContent = `${textArea.value.length} chars`;
+            }
+        });
+
         textPanel.appendChild(textArea);
         popup.appendChild(textPanel);
 
-        // --- Middle Panel: AI Selection List ---
         const aiSelectionPanel = document.createElement("div");
         applyStyles(aiSelectionPanel, {
             flex: "1",
@@ -352,7 +333,7 @@ javascript: void (function () {
             flexDirection: "column",
             borderRight: `1px solid ${styles.colors.border}`,
             overflow: "hidden",
-            backgroundColor: "#2a3748" // Specific background for this panel
+            backgroundColor: "#2a3748"
         });
 
         const aiSelectionPanelHeader = document.createElement("div");
@@ -380,9 +361,16 @@ javascript: void (function () {
             padding: styles.paddingSmall
         });
 
-        const defaultAiName = "ChatGPT (Temp Chat)"; // Preferred default AI
+        // Preserve historical default behavior; fallback to first entry if renamed/removed.
+        const defaultAiName = "ChatGPT (Temp Chat)";
         const defaultAiIndex = aiOptions.findIndex(ai => ai.name === defaultAiName);
 
+        /**
+         * Iterates through available AI options and creates UI elements for each.
+         * Sets up event listeners for selection and hover effects.
+         * @param {Object} aiItem - The AI service object containing name and URL.
+         * @param {number} index - The index of the current AI service in the array.
+         */
         aiOptions.forEach((aiItem, index) => {
             const aiItemElement = document.createElement("div");
             applyStyles(aiItemElement, {
@@ -408,37 +396,37 @@ javascript: void (function () {
 
             const aiItemUrlDiv = document.createElement("div");
             applyStyles(aiItemUrlDiv, { fontSize: styles.fontSizeXs, color: styles.colors.textDim, marginTop: "2px" });
-            aiItemUrlDiv.textContent = aiItem.url.replace("https://", "").split("/")[0]; // Display base domain
+            aiItemUrlDiv.textContent = aiItem.url.replace("https://", "").split("/")[0];
             aiItemTextDiv.appendChild(aiItemUrlDiv);
 
             aiItemInnerDiv.appendChild(aiItemTextDiv);
             aiItemElement.appendChild(aiItemInnerDiv);
 
             aiItemElement.onmouseover = () => {
-                if (selectedAi !== aiItem) { // Only change if not already selected
+                if (selectedAi !== aiItem) {
                     aiItemElement.style.backgroundColor = styles.colors.hoverBg;
                 }
             };
             aiItemElement.onmouseout = () => {
-                if (selectedAi !== aiItem) { // Revert if not selected
+                if (selectedAi !== aiItem) {
                     aiItemElement.style.backgroundColor = styles.colors.bgDark;
                 }
             };
             aiItemElement.onclick = () => {
-                if (selectedAiElement) { // Deselect previous
+                // Clear previous selection styling, then apply selected state to current item.
+                if (selectedAiElement) {
                     selectedAiElement.style.backgroundColor = styles.colors.bgDark;
                     selectedAiElement.style.borderColor = "transparent";
                     selectedAiElement.style.boxShadow = "none";
                 }
                 selectedAi = aiItem;
                 selectedAiElement = aiItemElement;
-                // Apply selected styles
                 selectedAiElement.style.backgroundColor = styles.colors.selectedBg;
                 selectedAiElement.style.borderColor = styles.colors.selectedBorder;
                 selectedAiElement.style.boxShadow = `0 0 0 2px ${styles.colors.selectedBorder}`;
 
-                if (selectedAiDisplay) { // Update the display in the actions panel
-                    selectedAiDisplay.textContent = ''; // Clear previous
+                if (selectedAiDisplay) {
+                    selectedAiDisplay.textContent = '';
                     const strongName = document.createElement("strong");
                     applyStyles(strongName, { color: styles.colors.accent });
                     strongName.textContent = aiItem.name;
@@ -452,7 +440,6 @@ javascript: void (function () {
                     selectedAiDisplay.appendChild(spanUrl);
                 }
 
-                // Enable action buttons
                 if (detailedButton) { detailedButton.style.opacity = "1"; detailedButton.style.cursor = "pointer"; }
                 if (simpleButton) { simpleButton.style.opacity = "1"; simpleButton.style.cursor = "pointer"; }
                 if (translateButton) { translateButton.style.opacity = "1"; translateButton.style.cursor = "pointer"; }
@@ -460,23 +447,22 @@ javascript: void (function () {
             };
             aiListContainer.appendChild(aiItemElement);
 
-            // Auto-select the default AI (or the first one if default not found)
             const effectiveDefaultIndex = defaultAiIndex !== -1 ? defaultAiIndex : 0;
+            // Defer default selection until after elements exist and handlers are attached.
             if (index === effectiveDefaultIndex) {
-                setTimeout(() => aiItemElement.click(), 0); // Use setTimeout to ensure DOM is ready
+                setTimeout(() => aiItemElement.click(), 0);
             }
         });
         aiSelectionPanel.appendChild(aiListContainer);
         popup.appendChild(aiSelectionPanel);
 
-        // --- Right Panel: Processing Options & Actions ---
         const actionsPanel = document.createElement("div");
         applyStyles(actionsPanel, {
             flex: "1",
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
-            backgroundColor: "#2a3748" // Specific background for this panel
+            backgroundColor: "#2a3748"
         });
 
         const actionsPanelHeader = document.createElement("div");
@@ -506,13 +492,13 @@ javascript: void (function () {
             overflowY: "auto"
         });
 
-        selectedAiDisplay = document.createElement("div"); // Assign to global 'selectedAiDisplay'
+        selectedAiDisplay = document.createElement("div");
         applyStyles(selectedAiDisplay, {
             marginBottom: "1.5rem",
             fontSize: styles.fontSizeSm,
             color: styles.colors.textDim
         });
-        selectedAiDisplay.textContent = "No AI selected"; // Initial text
+        selectedAiDisplay.textContent = "No AI selected";
         actionsContainer.appendChild(selectedAiDisplay);
 
         const promptFormatTitle = document.createElement("h4");
@@ -527,16 +513,15 @@ javascript: void (function () {
         promptFormatTitle.textContent = "Prompt Format";
         actionsContainer.appendChild(promptFormatTitle);
 
-        // Detailed Format Button
-        detailedButton = document.createElement("div"); // Assign to global 'detailedButton'
+        detailedButton = document.createElement("div");
         applyStyles(detailedButton, {
             backgroundColor: styles.colors.bgDark,
             padding: styles.padding,
             borderRadius: "0.5rem",
             border: `1px solid ${styles.colors.border}`,
             marginBottom: "0.75rem",
-            cursor: "not-allowed", // Initially disabled
-            opacity: "0.6",        // Dimmed when disabled
+            cursor: "not-allowed",
+            opacity: "0.6",
             transition: "border-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease"
         });
         const detailedButtonH5 = document.createElement("h5");
@@ -552,8 +537,7 @@ javascript: void (function () {
         detailedButton.onclick = () => { selectedAi && handleAction(detailedPrompt, "Detailed Format") };
         actionsContainer.appendChild(detailedButton);
 
-        // Simple Summary Button
-        simpleButton = document.createElement("div"); // Assign to global 'simpleButton'
+        simpleButton = document.createElement("div");
         applyStyles(simpleButton, {
             backgroundColor: styles.colors.bgDark,
             padding: styles.padding,
@@ -577,8 +561,7 @@ javascript: void (function () {
         simpleButton.onclick = () => { selectedAi && handleAction(simplePrompt, "Simple Summary") };
         actionsContainer.appendChild(simpleButton);
 
-        // Translate Button
-        translateButton = document.createElement("div"); // Assign to global 'translateButton'
+        translateButton = document.createElement("div");
         applyStyles(translateButton, {
             backgroundColor: styles.colors.bgDark,
             padding: styles.padding,
@@ -602,12 +585,10 @@ javascript: void (function () {
         translateButton.onclick = () => { selectedAi && handleAction(translatePrompt, "Translate to English") };
         actionsContainer.appendChild(translateButton);
 
-        // Spacer to push manual copy button to the bottom
         const spacerDiv = document.createElement("div");
         applyStyles(spacerDiv, { flexGrow: "1" });
         actionsContainer.appendChild(spacerDiv);
 
-        // Manual Copy Section
         const manualCopyContainer = document.createElement("div");
         applyStyles(manualCopyContainer, {
             paddingTop: styles.padding,
@@ -615,35 +596,32 @@ javascript: void (function () {
             marginTop: styles.padding
         });
 
-        // Create a manual copy button element
         const manualCopyButton = document.createElement("button");
-        // Apply consistent styling to match the application's dark theme
         applyStyles(manualCopyButton, {
-            width: "100%",                             // Full width of container
-            backgroundColor: styles.colors.bgLighter,  // Slightly lighter than background for visibility
-            color: styles.colors.text,                 // Text color from theme
-            border: "none",                            // No border for cleaner look
-            padding: `${styles.paddingSmall} ${styles.padding}`,  // Vertical and horizontal padding
-            borderRadius: "0.5rem",                   // Rounded corners
-            fontSize: styles.fontSizeSm,               // Small font size for button text
-            cursor: "pointer",                        // Pointer cursor on hover
-            textAlign: "center",                      // Center button text
-            transition: "background-color 0.2s ease"  // Smooth color transition on hover
+            width: "100%",
+            backgroundColor: styles.colors.bgLighter,
+            color: styles.colors.text,
+            border: "none",
+            padding: `${styles.paddingSmall} ${styles.padding}`,
+            borderRadius: "0.5rem",
+            fontSize: styles.fontSizeSm,
+            cursor: "pointer",
+            textAlign: "center",
+            transition: "background-color 0.2s ease"
         });
         manualCopyButton.textContent = "Copy Detailed Prompt + Edited Text Manually";
         manualCopyButton.onmouseover = () => manualCopyButton.style.backgroundColor = styles.colors.hoverBg;
         manualCopyButton.onmouseout = () => manualCopyButton.style.backgroundColor = styles.colors.bgLighter;
+        // Backup path: copy without navigation so users can paste manually anywhere.
         manualCopyButton.onclick = () => {
-            if (!selectedAi) { // Though this button doesn't open an AI, context might be useful
-                alert("Please select an AI first to ensure context is relevant (though this button copies locally).");
-                // Or simply proceed if AI selection is not strictly necessary for this button's primary function.
-                // For now, let's keep the check for consistency.
-                // return;
+            if (!textArea) {
+                 alert("Error: Text area not initialized for manual copy.");
+                 return;
             }
             const sourceUrl = window.location.href;
             const contextPrefix = `The text was taken from the url \`${sourceUrl}\`\n Here is the text to analyze:\n\n`;
-            const currentText_manual = textArea.value; // Get current text from textarea
-            const text_manual = `${detailedPrompt}\n\n${contextPrefix}${currentText_manual}`; // Using detailedPrompt as default for manual copy
+            const currentText_manual = textArea.value;
+            const text_manual = `${detailedPrompt}\n\n${contextPrefix}${currentText_manual}`;
             navigator.clipboard.writeText(text_manual)
                 .then(() => {
                     alert("Detailed format prompt + EDITED text (with URL) copied to clipboard!");
@@ -653,35 +631,24 @@ javascript: void (function () {
                     console.error("Manual copy failed:", error);
                 });
         };
-        // Add the manual copy button to the manual copy container
         manualCopyContainer.appendChild(manualCopyButton);
-        // Add the manual copy container (with the manual copy button) to the actions container
         actionsContainer.appendChild(manualCopyContainer);
-
-        // Add the actions container (with all the AI buttons and the manual copy button) to the actions panel
         actionsPanel.appendChild(actionsContainer);
-        // Add the actions panel (with all the AI buttons and the manual copy button) to the popup
         popup.appendChild(actionsPanel);
-
-        // Add the fully constructed popup to the page body
         document.body.appendChild(popup);
         console.log("AI Selector Popup created.");
 
+    /**
+     * Global error handler for the bookmarklet.
+     * Displays errors to the user and ensures cleanup of any created elements.
+     * @param {Error} error - The error that was caught.
+     */
     } catch (error) {
         console.error("Bookmarklet error:", error);
         alert("Error executing bookmarklet: " + error.message);
-        // Attempt to clean up if an error occurs during setup
         const popupToRemove = document.getElementById(popupId);
         const overlayToRemove = document.getElementById(overlayId);
         if (popupToRemove) popupToRemove.remove();
         if (overlayToRemove) overlayToRemove.remove();
     }
 })();
-
-
-// Bookmarklet creation instructions:
-// Options:
-// 1) Use a bookmarklet generator like https://caiorss.github.io/bookmarklet-maker/
-// 2) Use a LLM prompt to minify the code i.e. "Format the following as a single line chrome bookmarklet"
-//    With a LLM  The key prompt is "minify the following code to a single line chrome bookmarklet"
-// 3) Use https://www.toptal.com/developers/javascript-minifier
