@@ -5,10 +5,12 @@
   - `src/quicksynth.js`: readable development source with comments.
   - `dist/quicksynth.bookmarklet.js`: single-line bookmarklet payload for installation.
 - `assets/`: screenshots and media used by documentation.
+- `docs/`: supporting documentation (including popup UI mapping).
 - `VERSION`: current project version (single source of truth).
 - `README.md`: user-facing install/usage guide.
 
 Keep functional changes in `src/quicksynth.js` first, then propagate to the bookmarklet build artifact in `dist/`.
+Use `docs/popup-ui-map.md` when changing popup layout, section labels, or UI event flow.
 
 ## Versioning
 - Do not encode versions in filenames.

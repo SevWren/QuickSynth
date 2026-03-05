@@ -46,6 +46,9 @@ javascript: void (function () {
             { name: "MS Copilot", url: "https://copilot.microsoft.com/" },
             { name: "Perplexity", url: "https://www.perplexity.ai/" },
             { name: "DuckDuckGo", url: "http://duck.ai/" },
+            { name: "DeepSeek", url: "https://chat.deepseek.com/" },
+            { name: "Claude (Sonnet)", url: "https://claude.ai/" },
+            { name: "Qwen Chat", url: "https://chat.qwen.ai/" },
         ];
 
         /**
@@ -163,6 +166,11 @@ javascript: void (function () {
             for (const key in styleProps) {
                 element.style[key] = styleProps[key];
             }
+        }
+
+        function getDisplayHost(url) {
+            const withoutScheme = url.replace("https://", "").replace("http://", "");
+            return withoutScheme.split("/")[0];
         }
 
         /**
@@ -361,8 +369,8 @@ javascript: void (function () {
             padding: styles.paddingSmall
         });
 
-        // Preserve historical default behavior; fallback to first entry if renamed/removed.
-        const defaultAiName = "ChatGPT (Temp Chat)";
+        // Default to DuckDuckGo; fallback to first entry if renamed/removed.
+        const defaultAiName = "DuckDuckGo";
         const defaultAiIndex = aiOptions.findIndex(ai => ai.name === defaultAiName);
 
         /**
@@ -396,7 +404,7 @@ javascript: void (function () {
 
             const aiItemUrlDiv = document.createElement("div");
             applyStyles(aiItemUrlDiv, { fontSize: styles.fontSizeXs, color: styles.colors.textDim, marginTop: "2px" });
-            aiItemUrlDiv.textContent = aiItem.url.replace("https://", "").split("/")[0];
+            aiItemUrlDiv.textContent = getDisplayHost(aiItem.url);
             aiItemTextDiv.appendChild(aiItemUrlDiv);
 
             aiItemInnerDiv.appendChild(aiItemTextDiv);
@@ -433,7 +441,7 @@ javascript: void (function () {
 
                     const spanUrl = document.createElement("span");
                     applyStyles(spanUrl, { fontSize: styles.fontSizeXs, color: styles.colors.textDim });
-                    spanUrl.textContent = ` (${aiItem.url.replace("https://","").split("/")[0]})`;
+                    spanUrl.textContent = ` (${getDisplayHost(aiItem.url)})`;
 
                     selectedAiDisplay.appendChild(document.createTextNode("Selected: "));
                     selectedAiDisplay.appendChild(strongName);
