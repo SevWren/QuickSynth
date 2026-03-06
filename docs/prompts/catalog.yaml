@@ -1,0 +1,46 @@
+version: 1
+updated: 2026-03-05
+owner: QuickSynth maintainers
+
+prompts:
+  - id: detailed-format
+    title: Detailed Format
+    status: active
+    location: current/detailed-format.md
+    ui_label: Detailed Format
+    notes: Primary detailed summarization style.
+
+  - id: simple-summary
+    title: Simple Summary
+    status: active
+    location: current/simple-summary.md
+    ui_label: Simple Summary Format
+    notes: Short summary for quick consumption.
+
+  - id: translate-english
+    title: Translate to English
+    status: active
+    location: current/translate-english.md
+    ui_label: Translate to English
+    notes: Language conversion to English.
+
+  - id: research-outline
+    title: Research Outline
+    status: candidate
+    location: future/research-outline.md
+    ui_label: null
+    notes: Potential future prompt for long-form analysis tasks.
+
+  - id: fact-check
+    title: Fact Check
+    status: candidate
+    location: future/fact-check.md
+    ui_label: null
+    notes: Potential future prompt for claim verification workflows.
+
+  - id: sentiment-analysis
+    title: Sentiment Analysis
+    status: candidate
+    location: future/sentiment-analysis.md
+    ui_label: null
+    notes: Potential future prompt for tone/sentiment extraction.

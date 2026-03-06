@@ -90,6 +90,7 @@ Bookmarklets are installed differently than browser extensions.
 You can modify the bookmarklet code directly (before creating the bookmark) to:
 
 For popup structure and UI event-flow mapping, see `docs/popup-ui-map.md`.
+For curated prompt documentation and future prompt planning, see `docs/prompts/README.md`.
 
 *   **Change AI Services:** Edit the `e` array (variable holding the list of AI objects) to add, remove, or modify the names and URLs. This is how "ChatGPT (Normal)" was added.
 *   **Modify Prompts:** Edit the `l` (Detailed Format), `n` (Simple Summary), or `z` (Translate to English) variables to change the system instructions sent to the AI. Remember that special characters in prompts need to be URL-encoded (e.g., `%27` for an apostrophe, `%0A` for a newline if not using template literals).

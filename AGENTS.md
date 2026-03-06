@@ -6,6 +6,7 @@
   - `dist/quicksynth.bookmarklet.js`: single-line bookmarklet payload for installation.
 - `assets/`: screenshots and media used by documentation.
 - `docs/`: supporting documentation (including popup UI mapping).
+  - `docs/prompts/`: curated prompt library blueprint and prompt catalog.
 - `VERSION`: current project version (single source of truth).
 - `README.md`: user-facing install/usage guide.
 
