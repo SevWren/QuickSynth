@@ -288,7 +288,8 @@ javascript: void (function () {
         applyStyles(textPanelHeaderTitle, {
             fontSize: styles.fontSizeLg,
             fontWeight: "bold",
-            margin: "0"
+            margin: "0",
+            color: styles.colors.text
         });
         textPanelHeaderTitle.textContent = "Selected Text";
         textPanelHeader.appendChild(textPanelHeaderTitle);
@@ -356,7 +357,8 @@ javascript: void (function () {
         applyStyles(aiSelectionPanelHeaderTitle, {
             fontSize: styles.fontSizeLg,
             fontWeight: "bold",
-            margin: "0"
+            margin: "0",
+            color: styles.colors.text
         });
         aiSelectionPanelHeaderTitle.textContent = "Select AI Assistant";
         aiSelectionPanelHeader.appendChild(aiSelectionPanelHeaderTitle);
@@ -485,7 +487,8 @@ javascript: void (function () {
         applyStyles(actionsPanelHeaderTitle, {
             fontSize: styles.fontSizeLg,
             fontWeight: "bold",
-            margin: "0"
+            margin: "0",
+            color: styles.colors.text
         });
         actionsPanelHeaderTitle.textContent = "Processing Options";
         actionsPanelHeader.appendChild(actionsPanelHeaderTitle);
@@ -533,7 +536,12 @@ javascript: void (function () {
             transition: "border-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease"
         });
         const detailedButtonH5 = document.createElement("h5");
-        applyStyles(detailedButtonH5, { fontWeight: "500", fontSize: styles.fontSizeBase, margin: "0 0 4px 0" });
+        applyStyles(detailedButtonH5, {
+            fontWeight: "500",
+            fontSize: styles.fontSizeBase,
+            margin: "0 0 4px 0",
+            color: styles.colors.text
+        });
         detailedButtonH5.textContent = "Detailed Format";
         detailedButton.appendChild(detailedButtonH5);
         const detailedButtonP = document.createElement("p");
@@ -557,7 +565,12 @@ javascript: void (function () {
             transition: "border-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease"
         });
         const simpleButtonH5 = document.createElement("h5");
-        applyStyles(simpleButtonH5, { fontWeight: "500", fontSize: styles.fontSizeBase, margin: "0 0 4px 0" });
+        applyStyles(simpleButtonH5, {
+            fontWeight: "500",
+            fontSize: styles.fontSizeBase,
+            margin: "0 0 4px 0",
+            color: styles.colors.text
+        });
         simpleButtonH5.textContent = "Simple Summary Format";
         simpleButton.appendChild(simpleButtonH5);
         const simpleButtonP = document.createElement("p");
@@ -581,7 +594,12 @@ javascript: void (function () {
             transition: "border-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease"
         });
         const translateButtonH5 = document.createElement("h5");
-        applyStyles(translateButtonH5, { fontWeight: "500", fontSize: styles.fontSizeBase, margin: "0 0 4px 0" });
+        applyStyles(translateButtonH5, {
+            fontWeight: "500",
+            fontSize: styles.fontSizeBase,
+            margin: "0 0 4px 0",
+            color: styles.colors.text
+        });
         translateButtonH5.textContent = "Translate to English";
         translateButton.appendChild(translateButtonH5);
         const translateButtonP = document.createElement("p");
