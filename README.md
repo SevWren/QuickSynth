@@ -55,7 +55,9 @@ Bookmarklets are installed differently than browser extensions.
 
 <br> ![Bookmarklet animated](assets/bookmarklet_animated.webp) <br>
 
+![QuickSynth animated demo](assets/quicksynth_transparency2.gif)
 
+![QuickSynth animated demo]([https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif](https://github.com/SevWren/QuickSynth/blob/main/Assets/quicksynth_transparency2.gif?raw=true))
 
 1.  **Copy the Bookmarklet Code:** Go to the bookmarklet output file in this repository ([dist/quicksynth.bookmarklet.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/dist/quicksynth.bookmarklet.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
