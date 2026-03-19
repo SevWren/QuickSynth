@@ -1,0 +1,15 @@
+[
+  { "id": "detailed-format", "name": "Detailed Format", "path": "docs/prompts/future/detailed-format.md" },
+  { "id": "simple-summary", "name": "Simple Summary", "path": "docs/prompts/future/simple-summary.md" },
+  { "id": "5-questions", "name": "5 Questions", "path": "docs/prompts/future/5_questions.md" },
+  { "id": "bias", "name": "Bias Aware", "path": "docs/prompts/future/Bias_Aware.md" },
+  { "id": "combined", "name": "Combined", "path": "docs/prompts/future/Combined.md" },
+  { "id": "explain-to-a-friend", "name": "Explain to a Friend", "path": "docs/prompts/future/Explain_To_A_Friend.md" },
+  { "id": "layered-depth", "name": "Layered Depth", "path": "docs/prompts/future/Layered_Depth.md" },
+  { "id": "ongoing-before-after", "name": "Ongoing — Before & After", "path": "docs/prompts/future/Ongoing_Before_After.md" },
+  { "id": "fact-check", "name": "Fact Check", "path": "docs/prompts/future/fact-check.md" },
+  { "id": "news-card", "name": "News Card", "path": "docs/prompts/future/news_card.md" },
+  { "id": "research-outline", "name": "Research Outline", "path": "docs/prompts/future/research-outline.md" },
+  { "id": "sentiment-analysis", "name": "Sentiment Analysis", "path": "docs/prompts/future/sentiment-analysis.md" },
+  { "id": "structured-debate", "name": "Structured Debate", "path": "docs/prompts/future/structured_debate.md" }
+]
