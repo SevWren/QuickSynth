@@ -1,10 +1,6 @@
 # QuickSynth Bookmarklet
 
-**Author:** [SevWren](https://github.com/SevWren) <br>
-**Repository:** [SevWren/QuickSynth](https://github.com/SevWren/QuickSynth) <br>
-**License:** [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://github.com/SevWren/QuickSynth/blob/main/LICENSE)
-
----
+![quicksynth_transparency2](https://github.com/user-attachments/assets/3f318a69-e70a-4933-a7eb-f71bdfc26139)
 
 ## Overview
 
@@ -53,19 +49,15 @@ Bookmarklets are installed differently than browser extensions.
 
 **Method 2: Manual Creation**
 
-<br> ![Bookmarklet animated](assets/bookmarklet_animated.webp) <br>
+![quicksynth_bookmarklet_transparency2](https://github.com/user-attachments/assets/27cd5bd6-518d-4a64-bb5f-0e5c3011068f)
 
-![QuickSynth animated demo](assets/quicksynth_transparency2.gif)
-
-![QuickSynth animated demo]([https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif](https://github.com/SevWren/QuickSynth/blob/main/Assets/quicksynth_transparency2.gif?raw=true))
-
-1.  **Copy the Bookmarklet Code:** Go to the bookmarklet output file in this repository ([dist/quicksynth.bookmarklet.js](https://raw.githubusercontent.com/SevWren/QuickSynth/refs/heads/main/dist/quicksynth.bookmarklet.js)) and copy the **entire single line** of JavaScript code starting with `javascript:void(function(){...`. Make sure you copy *everything*.
+1.  **Copy the Bookmarklet Code:** Go to the bookmarklet output file in this repository and copy. 
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.
     *   Select "Add Page..." or "Add Bookmark..." (the exact wording varies by browser: Firefox uses "Add Bookmark...", Chrome/Edge use "Add page...").
 4.  **Edit the Bookmark:**
-    *   In the **Name** field, enter a short, descriptive name (e.g., `QuickSynth`, `⚡️ AI Tool`).
+    *   In the **Name** field, enter a short, descriptive name (e.g., `QuickSynth`, `AI Tool`).
     *   In the **URL** (or **Location**) field, **delete** any existing content (like `http://...`) and **paste** the full JavaScript code you copied in step 1.
 5.  **Save** the bookmark. It should now appear on your bookmarks bar.
 
@@ -75,8 +67,6 @@ Bookmarklets are installed differently than browser extensions.
 2.  **Select Text (Optional):** Highlight the specific portion of text you are interested in. If you skip this step, QuickSynth will try to use the entire page content.
 3.  **Click the Bookmarklet:** Click the `QuickSynth` bookmark you created in your bookmarks bar.
 4.  **UI Appears:** A popup menu will appear overlaying the page.
-<br> ![PopUp](assets/popup.png) <br>
-    *(Note: Screenshot shows general layout; UI text/options might slightly differ based on updates)*
 5.  **Edit Text (Optional):** The captured text appears in the left-most pane. You can now click into this area and edit, delete, or add text as needed before proceeding.
 6.  **Choose AI:** "ChatGPT (Temp Chat)" will be selected by default. You can click on the name of a different AI service (like "ChatGPT (Normal)" or others) if desired. The selected AI will be highlighted.
 7.  **Choose Format:** Click on the desired prompt format button ("Detailed Format", "Simple Summary Format", or "Translate to English").
@@ -115,50 +105,10 @@ This section lists potential improvements and features for future versions:
 *   **Advanced Text Extraction:** Improve handling of complex pages, iframes, or specific content types.
 *   **Dynamic Char Count:** The character count now updates in real-time as you edit the text in the text area.
 *   ~~**Direct API Integration (Advanced):** Explore possibilities for directly interacting with AI APIs if available (this would likely require a different approach, possibly a browser extension instead of a bookmarklet, due to security and complexity).~~
-
 ---
 ## BUGS / Known Issues
-
 - **Platform Compatibility**: This bookmarklet is currently only confirmed to work on Windows 10. Mobile platforms (iOS/Android) prohibit automated clipboard access, which is required for this tool to function.
-
-Please report any issues you find to the [Issues](https://github.com/QuickSynth/QuickSynth/issues) page or 📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
-
-## Changelog
-Current version: `0.90` (source of truth: root `VERSION` file).
-
-### v0.90 - 2026-03-05
-*   **Repo:** Standardized repository layout to `src/`, `dist/`, `assets/`, and `docs/`.
-*   **Versioning:** Adopted root `VERSION` as the single source of truth.
-
-### v2.08 - 2025-05-31
-*   **Fix:** Fixed real-time character count to properly update as you type in the text area
-*   **UI/UX:** Improved the visual feedback when hovering over interactive elements
-*   **Code Quality:** Enhanced JSDoc comments and code organization
-
-### v2.07 - 2025-04-28
-*   **Feature:** Added "ChatGPT (Normal)" option (`https://chatgpt.com/`) to the AI selection list, appearing below "ChatGPT (Temp Chat)". Updated the `e` array in the script.
-*   **Fix:** 2025/5/28 Updated the Grok Url, additional readme enhancements & enhanced JSDoc comments
-
-### v2.05 - 2024-04-21
-*   **Feature:** Made the "Selected Text" area editable within the popup. Users can now modify or trim the captured text directly in the popup before sending it to the AI.
-*   **Change:** Updated the manual copy button and its confirmation alert to refer to "Edited Text".
-*   **Change:** Clarified the character count label as "chars (original)".
-*   **Internal:** Replaced the text display `<div>` with a styled `<textarea>` and updated logic to copy the edited text.
-*   **Fix:** Corrected encoding for backticks around the source URL in the copied prompt context.
-
-### v2.06 - 2025-04-20
-*   Minor internal code refinements and version bump. (No major user-facing feature changes compared to v2.05).
-
-*(Previous versions omitted for brevity)*
-
 ---
-
-## Feedback & Bug Reports
-
-Your feedback is valuable in improving QuickSynth! You can help by:
-- Reporting any bugs you encounter via issues or the google form below. <br>
-📝 [Submit your experience here](https://forms.gle/8emHcPaofcFx4Sck8)
-
 ## License
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
