@@ -4,8 +4,8 @@
 
 ## Overview
 
-QuickSynth is a browser bookmarklet designed to streamline the process of sending text
-from ANY webpage (or the entire page's text content if no text is selected) to various AI chat
+QuickSynth is a browser bookmarklet designed to __streamline__ the process of sending text
+from ANY webpage (_or the entire page's text content if no text is selected_) to various AI chat
 platforms. The text to be sent is displayed in an editable area, bundles your
 text with one of several pre-defined prompts, includes the source URL of the webpage for context, and copies the
 combined content to your clipboard before opening the chosen AI service's website in a new tab.
@@ -15,12 +15,12 @@ This allows for quick analysis, summarization, translation, or reformatting of w
 
 ## Features
 
-*   **Text Selection:** Automatically grabs **selected text** OR **all text**.
-*   **Editable Text Area:** Displays the editable captured text in the popup, allowing you to modify before processing. *Rare*, but on **occasion** sites will contain enough hidden text that can affect a LLM's response when summarizing.  *(New in v2.05)*
-*   **AI Selection UI:** Presents a clean, dark-themed gui popup (see screenshot). "ChatGPT (Temp Chat)" is selected by default.
-*   **Prompt Formatting Options:** System prompts for different tasks:
-    *   **Detailed Format:** Aims for a concise summary with specific formatting rules (simple sentences, bullets, bolding, italics), still allows for a more detailed response than simple summary format.
+*   **Text Selection:** Automatically grabs **selected text** OR **all detected visible text**.
+*   **Editable Text Area:** Displays the editable captured text in the popup, allowing you to modify before processing. *Rare*, but on **occasion** sites will contain enough hidden text that can affect a LLM's response when summarizing.
+*   **AI Selection UI:**
+*   **Prompt Presets:**
     *   **Simple Summary Format:** Creates a short summary (5 bullets or less + 1 paragraph).
+    *   **Detailed Format:** Aims for a concise summary with specific formatting rules (simple sentences, bullets, bolding, italics), still allows for a more detailed response than simple summary format.    
     *   **Translate to English:** Instructs the AI to translate the provided text into English.
 *   **Source URL Context:** Automatically extracts current URL of the source webpage and inserts it into the final contents copied to the clipboard, providing context to the AI. When combined with a LLM & Web Search, this provides additional context to the AI.
 *   **Clipboard Integration:** Copies the processed text (including any manual edits) combined with the chosen system prompt and URL context directly to your clipboard.
@@ -41,17 +41,11 @@ This allows for quick analysis, summarization, translation, or reformatting of w
 
 ## Installation
 
-Bookmarklets are installed differently than browser extensions.
-
-**Method 1: Drag and Drop (If your browser supports it)**
-
-*   *This method is not currently set up for this repository. Please use Method 2.*
-
-**Method 2: Manual Creation**
+**Manual Creation**
 
 ![quicksynth_bookmarklet_transparency2](https://github.com/user-attachments/assets/27cd5bd6-518d-4a64-bb5f-0e5c3011068f)
 
-1.  **Copy the Bookmarklet Code:** Go to the bookmarklet output file in this repository and copy. 
+1.  **Copy the Bookmarklet Code:** Go to the [bookmarklet release](https://github.com/SevWren/QuickSynth/releases/tag/Releases) in this repository and copy.
 2.  **Show Bookmarks Bar:** Ensure your browser's bookmarks bar is visible (usually `Ctrl+Shift+B` or `Cmd+Shift+B`).
 3.  **Create a New Bookmark:**
     *   Right-click on your bookmarks bar.
@@ -81,12 +75,12 @@ Bookmarklets are installed differently than browser extensions.
 
 You can modify the bookmarklet code directly (before creating the bookmark) to:
 
-For popup structure and UI event-flow mapping, see `docs/popup-ui-map.md`.
-For curated prompt documentation and future prompt planning, see `docs/prompts/README.md`.
-
 *   **Change AI Services:** Edit the `e` array (variable holding the list of AI objects) to add, remove, or modify the names and URLs. This is how "ChatGPT (Normal)" was added.
 *   **Modify Prompts:** Edit the `l` (Detailed Format), `n` (Simple Summary), or `z` (Translate to English) variables to change the system instructions sent to the AI. Remember that special characters in prompts need to be URL-encoded (e.g., `%27` for an apostrophe, `%0A` for a newline if not using template literals).
 *   **Adjust Styling:** Modify the `s` object (variable holding style definitions like colors, padding, font sizes) to change the appearance of the popup. This now includes styling for the `<textarea>` element as well.
+
+For popup structure and UI event-flow mapping, see `docs/popup-ui-map.md`.
+For curated prompt documentation and future prompt planning, see `docs/prompts/README.md`.
 
 **Important:** After making edits, the entire code must still be on a **single line** starting with `javascript:` to work as a bookmarklet. You might want to use an online JavaScript minifier/compressor tool like <www.toptal.com/developers/javascript-minifier> after making changes, or use an AI assistant with a prompt like: "Minify the following code:': 
 
